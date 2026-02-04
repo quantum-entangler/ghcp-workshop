@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 import "./globals.css";
 import { QueryProvider } from "@/components/query-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +21,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const theme = localStorage.getItem('theme');
+                if (theme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body className={cn(inter.className, "antialiased min-h-screen")}>
-        <QueryProvider>
-          <Toaster />
-          {children}
-        </QueryProvider>
+        <ThemeProvider>
+          <QueryProvider>
+            <Toaster />
+            {children}
+          </QueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
