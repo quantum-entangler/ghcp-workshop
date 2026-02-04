@@ -45,14 +45,14 @@ export default async function NBAScores() {
     return (
       <div className="container mx-auto p-6">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900">NBA Scores</h1>
-          <p className="text-gray-600 mt-2">Latest game results and scores</p>
+          <h1 className="text-3xl font-bold">NBA Scores</h1>
+          <p className="text-muted-foreground mt-2">Latest game results and scores</p>
         </div>
         
         {results.length === 0 ? (
           <Card>
             <CardContent className="p-6 text-center">
-              <p className="text-gray-500">No games available at the moment.</p>
+              <p className="text-muted-foreground">No games available at the moment.</p>
             </CardContent>
           </Card>
         ) : (
@@ -64,7 +64,7 @@ export default async function NBAScores() {
                     <Badge variant="secondary" className="text-xs">
                       {game.event_status}
                     </Badge>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-muted-foreground">
                       {formatDate(game.event_date)}
                     </span>
                   </div>
@@ -87,7 +87,7 @@ export default async function NBAScores() {
                     
                     {/* Score Display */}
                     <div className="text-center py-2">
-                      <div className="text-2xl font-bold text-gray-900">
+                      <div className="text-2xl font-bold">
                         {game.event_final_result}
                       </div>
                     </div>
@@ -118,11 +118,11 @@ export default async function NBAScores() {
     
     return (
       <div className="container mx-auto p-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">NBA Scores</h1>
+        <h1 className="text-3xl font-bold mb-6">NBA Scores</h1>
         <Card>
           <CardContent className="p-6 text-center">
-            <p className="text-red-500 mb-2">Unable to load NBA scores</p>
-            <p className="text-gray-500 text-sm">Please try refreshing the page or check back later.</p>
+            <p className="text-destructive mb-2">Unable to load NBA scores</p>
+            <p className="text-muted-foreground text-sm">Please try refreshing the page or check back later.</p>
           </CardContent>
         </Card>
       </div>

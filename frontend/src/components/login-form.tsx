@@ -44,13 +44,13 @@ export function LoginForm() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
-      <Card className="w-full max-w-md shadow-md border border-gray-200">
+    <div className="flex items-center justify-center min-h-screen bg-background p-4">
+      <Card className="w-full max-w-md shadow-md">
         <CardHeader className="space-y-2 pb-6">
-          <CardTitle className="text-2xl font-semibold text-gray-900">
+          <CardTitle className="text-2xl font-semibold">
             NBA App Login
           </CardTitle>
-          <CardDescription className="text-gray-600">
+          <CardDescription>
             Access your NBA stats and scores
           </CardDescription>
         </CardHeader>
@@ -59,7 +59,7 @@ export function LoginForm() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Username Input Field */}
             <div className="space-y-2">
-              <Label htmlFor="username" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="username">
                 Username
               </Label>
               <Input
@@ -75,7 +75,7 @@ export function LoginForm() {
 
             {/* Password Input Field */}
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="password">
                 Password
               </Label>
               <Input
@@ -97,11 +97,11 @@ export function LoginForm() {
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
                 disabled={isLoading}
-                className="w-4 h-4 text-gray-900 border-gray-300 rounded focus:ring-2 focus:ring-gray-900 cursor-pointer"
+                className="w-4 h-4 rounded border-input focus:ring-2 focus:ring-ring cursor-pointer accent-primary"
               />
               <Label
                 htmlFor="remember"
-                className="text-sm text-gray-700 cursor-pointer"
+                className="cursor-pointer"
               >
                 Remember me
               </Label>
@@ -116,7 +116,7 @@ export function LoginForm() {
 
             {/* Success Alert */}
             {success && (
-              <Alert className="bg-green-50 text-green-900 border-green-200">
+              <Alert className="bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 border-green-200 dark:border-green-700">
                 <AlertDescription>
                   Login successful! Redirecting...
                 </AlertDescription>
@@ -126,7 +126,7 @@ export function LoginForm() {
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full bg-gray-900 hover:bg-gray-800 text-white font-medium py-2 transition-colors"
+              className="w-full"
               disabled={isLoading}
             >
               {isLoading ? "Signing in..." : "Login"}
@@ -136,7 +136,7 @@ export function LoginForm() {
             <div className="text-center pt-2">
               <button
                 type="button"
-                className="text-sm text-gray-600 hover:text-gray-900 transition-colors underline"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors underline"
                 onClick={() => console.log("Forgot password clicked")}
               >
                 Forgot password?

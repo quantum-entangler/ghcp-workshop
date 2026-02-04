@@ -5,11 +5,11 @@ import { Navigation } from "./navigation";
 
 export const Sidebar = () => {
   return (
-    <aside className="h-full bg-neutral-100 p-4 w-full">
+    <aside className="h-full bg-neutral-100 dark:bg-neutral-900 p-4 w-full">
       <Link href="/" className="flex items-center gap-1.5">
-        <Image src="/basketball-logo.svg" alt="logo" width={32} height={32} />{" "}
+        <Image src="/basketball-logo.svg" alt="logo" width={32} height={32} className="dark:invert" />{" "}
         <br />{" "}
-        <span className="bg-[#E5FF00] text-black font-semibold">
+        <span className="bg-[#E5FF00] dark:bg-yellow-400 text-black dark:text-neutral-900 font-semibold">
           GitHub Copilot Training
         </span>
       </Link>

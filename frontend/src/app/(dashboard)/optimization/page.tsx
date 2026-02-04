@@ -54,7 +54,7 @@ export default function OptimizationPage() {
       )}
       
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+        <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-600 text-red-700 dark:text-red-200 px-4 py-3 rounded">
           <strong>Error:</strong> {error}
         </div>
       )}
@@ -63,7 +63,7 @@ export default function OptimizationPage() {
         <div className="space-y-4">
           <p>
             The page took{" "}
-            <span className="text-bold text-xl bg-[#E5FF00] px-2 py-1 rounded">
+            <span className="text-bold text-xl bg-[#E5FF00] dark:bg-yellow-400 text-black dark:text-neutral-900 px-2 py-1 rounded">
               {optimization.executionTime}
             </span>{" "}
             milliseconds to load. <br /> 
@@ -71,7 +71,7 @@ export default function OptimizationPage() {
           </p>
           
           {/* Debug information - remove this in production */}
-          <div className="bg-gray-100 p-4 rounded text-sm">
+          <div className="bg-gray-100 dark:bg-neutral-800 p-4 rounded text-sm">
             <strong>Debug Info:</strong>
             <ul className="mt-2 space-y-1">
               <li>Token Count: {optimization.tokenCount}</li>

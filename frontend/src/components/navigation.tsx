@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { SettingsIcon, UsersIcon, LogIn } from "lucide-react";
+import { SettingsIcon, UsersIcon, LogIn, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { GoHome, GoHomeFill } from "react-icons/go";
 
@@ -22,6 +22,12 @@ const routes = [
     activeIcon: FaBasketball,
   },
   {
+    label: "Players Info",
+    href: "/players-info",
+    icon: UsersIcon,
+    activeIcon: UsersIcon,
+  },
+  {
     label: "Stadiums",
     href: "/stadiums",
     icon: MdStadium,
@@ -40,10 +46,10 @@ const routes = [
     activeIcon: SiGithubcopilot,
   },
   {
-    label: "Errors",
+    label: "Add Player",
     href: "/errors",
-    icon: SettingsIcon,
-    activeIcon: SettingsIcon,
+    icon: UserPlus,
+    activeIcon: UserPlus,
   },
 ];
 

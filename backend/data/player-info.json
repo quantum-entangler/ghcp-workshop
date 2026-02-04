@@ -110,5 +110,19 @@
       "assistsPerGame": 0.0,
       "reboundsPerGame": 0.0
     }
+  },
+  {
+    "id": 9,
+    "name": "hiroshima nagasaki",
+    "position": "center",
+    "team": "RodeRagers",
+    "height": "6'7\"",
+    "weight": "250",
+    "birthDate": "N/A",
+    "stats": {
+      "pointsPerGame": 4.5,
+      "assistsPerGame": 3.4,
+      "reboundsPerGame": 5.1
+    }
   }
 ]
