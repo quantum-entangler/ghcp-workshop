@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
-import { SettingsIcon, UsersIcon } from "lucide-react";
+import { SettingsIcon, UsersIcon, LogIn } from "lucide-react";
 import Link from "next/link";
 import { GoHome, GoHomeFill } from "react-icons/go";
 
 import { CiBasketball } from "react-icons/ci";
 import { FaBasketball, FaWarehouse } from "react-icons/fa6";
 import { SiGithubcopilot } from "react-icons/si";
-import { MdOutlineSportsHandball } from "react-icons/md";
+import { MdOutlineSportsHandball, MdStadium } from "react-icons/md";
 
 const routes = [
   {
@@ -20,6 +20,18 @@ const routes = [
     href: "/nba-scores",
     icon: CiBasketball,
     activeIcon: FaBasketball,
+  },
+  {
+    label: "Stadiums",
+    href: "/stadiums",
+    icon: MdStadium,
+    activeIcon: MdStadium,
+  },
+  {
+    label: "Login",
+    href: "/login",
+    icon: LogIn,
+    activeIcon: LogIn,
   },
   {
     label: "Optimization",

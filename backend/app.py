@@ -35,61 +35,56 @@ def load_json_file(filename):
 @app.route('/api/nba-results', methods=['GET'])
 def get_nba_results():
     """Get NBA game results"""
-    try:
-        nba_games = load_json_file('nba-games.json')
-        if nba_games is None:
-            return jsonify({'error': 'Failed to load NBA data'}), 500
-        
-        return jsonify({'result': nba_games}), 200
-    except Exception as e:
-        print(f'Error serving NBA data: {e}')
-        return jsonify({'error': 'Failed to load NBA data. Please try again later.'}), 500
+    # load_json_file handles file-related errors and returns None on failure.
+    nba_games = load_json_file('nba-games.json')
+    if nba_games is None:
+        return jsonify({'error': 'Failed to load NBA data'}), 500
+
+    return jsonify({'result': nba_games}), 200
 
 # Stadiums data
 @app.route('/api/stadiums', methods=['GET'])
 def get_stadiums():
     """Get NBA stadiums information"""
-    try:
-        stadiums = load_json_file('stadiums.json')
-        if stadiums is None:
-            return jsonify({'error': 'Failed to load stadiums data'}), 500
-        
-        return jsonify(stadiums), 200
-    except Exception as e:
-        print(f'Error serving stadiums data: {e}')
-        return jsonify({'error': 'Failed to load stadiums data. Please try again later.'}), 500
+    # load_json_file handles file-related errors and returns None on failure.
+    stadiums = load_json_file('stadiums.json')
+    if stadiums is None:
+        return jsonify({'error': 'Failed to load stadiums data'}), 500
+
+    return jsonify(stadiums), 200
 
 # Player info data
 @app.route('/api/player-info', methods=['GET'])
 def get_player_info():
     """Get NBA player information"""
-    try:
-        players = load_json_file('player-info.json')
-        if players is None or len(players) == 0:
-            return jsonify({'error': 'No player data available'}), 404
-        
-        # Filter only required properties for each player
-        filtered_players = [
-            {
-                'id': player['id'],
-                'name': player['name'],
-                'team': player['team'],
-                'weight': player['weight'],
-                'height': player['height'],
-                'position': player['position']
-            }
-            for player in players
-        ]
-        
-        return jsonify(filtered_players), 200
-    except Exception as e:
-        print(f'Error fetching player info: {e}')
-        return jsonify({'error': 'Failed to fetch player information'}), 500
+    # load_json_file handles file-related errors and returns None on failure.
+    players = load_json_file('player-info.json')
+    if players is None or len(players) == 0:
+        return jsonify({'error': 'No player data available'}), 404
 
+    # Filter only required properties for each player, including stats
+    filtered_players = [
+        {
+            'id': player['id'],
+            'name': player['name'],
+            'team': player['team'],
+            'weight': player['weight'],
+            'height': player['height'],
+            'position': player['position'],
+            'stats': player.get('stats', {
+                'pointsPerGame': 0.0,
+                'assistsPerGame': 0.0,
+                'reboundsPerGame': 0.0
+            })
+        }
+        for player in players
+    ]
+
+    return jsonify(filtered_players), 200
 # Players API - Create player endpoint
 # TODO: This endpoint is intentionally broken for Task 1.7 workshop exercise
 # Students should use GitHub Copilot to identify and fix this issue
-@app.route('/api/player', methods=['POST'])  # INTENTIONAL ERROR: Wrong route name
+@app.route('/api/players', methods=['POST'])  # INTENTIONAL ERROR: Wrong route name
 def create_player():
     """Create a new player"""
     try:
@@ -277,34 +272,26 @@ To make the experience even more personal, the app includes a "Customize Experie
 Additionally, the app's "League Trends" section allows users to explore league-wide statistics and trends, such as the season's leaders in different categories, emerging player trends, and comparisons of team strategies. A unique "Trade Tracker" tool provides information on potential trades, showing rumors and projections on how player moves could impact teams and the league landscape.
     """
     
-    # INTENTIONALLY INEFFICIENT RECURSIVE FUNCTIONS for demonstration purposes
-    # These are designed to be slow and should be optimized by students
-    
-    def inefficient_fibonacci(n):
-        """Highly inefficient recursive fibonacci - no memoization"""
+    # Optimized implementations to preserve behavior without unnecessary work.
+    def fast_fibonacci(n):
+        """Iterative fibonacci for linear-time computation."""
         if n <= 1:
             return n
-        return inefficient_fibonacci(n - 1) + inefficient_fibonacci(n - 2)
-    
-    def inefficient_factorial(n):
-        """Inefficient recursive factorial with unnecessary string operations"""
-        if n <= 1:
-            return 1
-        # Adding unnecessary string concatenation to slow it down
-        temp = str(n) * 100  # Create large string
-        temp = temp[:10]  # Use only small part (wasteful)
-        return n * inefficient_factorial(n - 1)
-    
-    # Execute inefficient computations
-    # Calculate fibonacci(30) - this takes a few seconds but won't timeout
-    fib_result = inefficient_fibonacci(36)
-    
-    # Calculate factorial with string operations - reduced to avoid timeout
-    factorial_result = inefficient_factorial(500)
-    
-    # Do some unnecessary work with the prompt
-    for char in prompt[:100]:
-        temp_list = [char] * 1000  # Create unnecessary lists
+        prev, curr = 0, 1
+        for _ in range(2, n + 1):
+            prev, curr = curr, prev + curr
+        return curr
+
+    def fast_factorial(n):
+        """Iterative factorial with no extra allocations."""
+        result = 1
+        for value in range(2, n + 1):
+            result *= value
+        return result
+
+    # Execute computations efficiently to keep the demo output intact.
+    fib_result = fast_fibonacci(36)
+    factorial_result = fast_factorial(500)
     
     # Calculate execution time in seconds
     execution_time_seconds = time.time() - start_time
