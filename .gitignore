@@ -31,6 +31,7 @@ frontend/bun.lockb
 
 # testing
 /coverage
+test-screenshots/
 
 # next.js
 /.next/
