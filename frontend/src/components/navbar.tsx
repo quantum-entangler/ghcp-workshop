@@ -1,4 +1,5 @@
 import { MobileSidebar } from "./mobile-sidebar";
+import { ThemeToggle } from "./theme-toggle";
 
 export const Navbar = () => {
   return (
@@ -12,7 +13,10 @@ export const Navbar = () => {
           Performance!
         </p>
       </div>
-      <MobileSidebar />
+      <div className="flex items-center gap-2">
+        <ThemeToggle />
+        <MobileSidebar />
+      </div>
     </nav>
   );
 };
